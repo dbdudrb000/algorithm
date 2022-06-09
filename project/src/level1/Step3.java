@@ -10,7 +10,7 @@ public class Step3 {
 		      예2	"z-+.^." -> "z--"
 		      예3	"=.=" -> "aaa"
 		      예4	"123_.def" -> "123_.def"
-		      예5	"abcdefghijklmn.p" -> "abcdefghijklmn"
+		      예5	"abcdefghijklmn.p" -> "abcdefghijklmn" ex
 		 */
 		
 		String new_id = "...!@BaT#*..y.abcdefghijklm";
