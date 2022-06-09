@@ -1,37 +1,34 @@
 package level1;
 
-import java.util.regex.Pattern;
-
 public class Step3 {
 	public static void main(String[] args) {
 		
 		/**
-		 * ì˜ˆ1	"...!@BaT#*..y.abcdefghijklm"  -> "bat.y.abcdefghi"
-		      ì˜ˆ2	"z-+.^." -> "z--"
-		      ì˜ˆ3	"=.=" -> "aaa"
-		      ì˜ˆ4	"123_.def" -> "123_.def"
-		      ì˜ˆ5	"abcdefghijklmn.p" -> "abcdefghijklmn" ex
+		 * ¿¹1	"...!@BaT#*..y.abcdefghijklm"  -> "bat.y.abcdefghi"
+		      ¿¹2	"z-+.^." -> "z--"
+		      ¿¹3	"=.=" -> "aaa"
+		      ¿¹4	"123_.def" -> "123_.def"
+		      ¿¹5	"abcdefghijklmn.p" -> "abcdefghijklmn" ex
 		 */
-		String new_id = "...!@BaT#*..y.abcdefghijklm.";
-		solution(new_id);
+		String new_id = "abcdefghijklmn.p";
+		System.out.println(solution(new_id));
 	}
 	
 	/**
-	 *  1ë‹¨ê³„ new_idì˜ ëª¨ë“  ëŒ€ë¬¸ìžë¥¼ ëŒ€ì‘ë˜ëŠ” ì†Œë¬¸ìžë¡œ ì¹˜í™˜í•©ë‹ˆë‹¤.
-		2ë‹¨ê³„ new_idì—ì„œ ì•ŒíŒŒë²³ ì†Œë¬¸ìž, ìˆ«ìž, ë¹¼ê¸°(-), ë°‘ì¤„(_), ë§ˆì¹¨í‘œ(.)ë¥¼ ì œì™¸í•œ ëª¨ë“  ë¬¸ìžë¥¼ ì œê±°í•©ë‹ˆë‹¤.
-		3ë‹¨ê³„ new_idì—ì„œ ë§ˆì¹¨í‘œ(.)ê°€ 2ë²ˆ ì´ìƒ ì—°ì†ëœ ë¶€ë¶„ì„ í•˜ë‚˜ì˜ ë§ˆì¹¨í‘œ(.)ë¡œ ì¹˜í™˜í•©ë‹ˆë‹¤.
-		4ë‹¨ê³„ new_idì—ì„œ ë§ˆì¹¨í‘œ(.)ê°€ ì²˜ìŒì´ë‚˜ ëì— ìœ„ì¹˜í•œë‹¤ë©´ ì œê±°í•©ë‹ˆë‹¤.
-		5ë‹¨ê³„ new_idê°€ ë¹ˆ ë¬¸ìžì—´ì´ë¼ë©´, new_idì— "a"ë¥¼ ëŒ€ìž…í•©ë‹ˆë‹¤.
-		6ë‹¨ê³„ new_idì˜ ê¸¸ì´ê°€ 16ìž ì´ìƒì´ë©´, new_idì˜ ì²« 15ê°œì˜ ë¬¸ìžë¥¼ ì œì™¸í•œ ë‚˜ë¨¸ì§€ ë¬¸ìžë“¤ì„ ëª¨ë‘ ì œê±°í•©ë‹ˆë‹¤.
-                        ë§Œì•½ ì œê±° í›„ ë§ˆì¹¨í‘œ(.)ê°€ new_idì˜ ëì— ìœ„ì¹˜í•œë‹¤ë©´ ëì— ìœ„ì¹˜í•œ ë§ˆì¹¨í‘œ(.) ë¬¸ìžë¥¼ ì œê±°í•©ë‹ˆë‹¤.
-		7ë‹¨ê³„ new_idì˜ ê¸¸ì´ê°€ 2ìž ì´í•˜ë¼ë©´, new_idì˜ ë§ˆì§€ë§‰ ë¬¸ìžë¥¼ new_idì˜ ê¸¸ì´ê°€ 3ì´ ë  ë•Œê¹Œì§€ ë°˜ë³µí•´ì„œ ëì— ë¶™ìž…ë‹ˆë‹¤.
+	 *  1´Ü°è new_idÀÇ ¸ðµç ´ë¹®ÀÚ¸¦ ´ëÀÀµÇ´Â ¼Ò¹®ÀÚ·Î Ä¡È¯ÇÕ´Ï´Ù.
+		2´Ü°è new_id¿¡¼­ ¾ËÆÄºª ¼Ò¹®ÀÚ, ¼ýÀÚ, »©±â(-), ¹ØÁÙ(_), ¸¶Ä§Ç¥(.)¸¦ Á¦¿ÜÇÑ ¸ðµç ¹®ÀÚ¸¦ Á¦°ÅÇÕ´Ï´Ù.
+		3´Ü°è new_id¿¡¼­ ¸¶Ä§Ç¥(.)°¡ 2¹ø ÀÌ»ó ¿¬¼ÓµÈ ºÎºÐÀ» ÇÏ³ªÀÇ ¸¶Ä§Ç¥(.)·Î Ä¡È¯ÇÕ´Ï´Ù.
+		4´Ü°è new_id¿¡¼­ ¸¶Ä§Ç¥(.)°¡ Ã³À½ÀÌ³ª ³¡¿¡ À§Ä¡ÇÑ´Ù¸é Á¦°ÅÇÕ´Ï´Ù.
+		5´Ü°è new_id°¡ ºó ¹®ÀÚ¿­ÀÌ¶ó¸é, new_id¿¡ "a"¸¦ ´ëÀÔÇÕ´Ï´Ù.
+		6´Ü°è new_idÀÇ ±æÀÌ°¡ 16ÀÚ ÀÌ»óÀÌ¸é, new_idÀÇ Ã¹ 15°³ÀÇ ¹®ÀÚ¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁö ¹®ÀÚµéÀ» ¸ðµÎ Á¦°ÅÇÕ´Ï´Ù.
+                        ¸¸¾à Á¦°Å ÈÄ ¸¶Ä§Ç¥(.)°¡ new_idÀÇ ³¡¿¡ À§Ä¡ÇÑ´Ù¸é ³¡¿¡ À§Ä¡ÇÑ ¸¶Ä§Ç¥(.) ¹®ÀÚ¸¦ Á¦°ÅÇÕ´Ï´Ù.
+		7´Ü°è new_idÀÇ ±æÀÌ°¡ 2ÀÚ ÀÌÇÏ¶ó¸é, new_idÀÇ ¸¶Áö¸· ¹®ÀÚ¸¦ new_idÀÇ ±æÀÌ°¡ 3ÀÌ µÉ ¶§±îÁö ¹Ýº¹ÇØ¼­ ³¡¿¡ ºÙÀÔ´Ï´Ù.
 	 * @param new_id
 	 */
-	public static void solution(String new_id) {
-		// 1ë‹¨ê³„, 2ë‹¨ê³„
+	public static String solution(String new_id) {
+		// 1´Ü°è, 2´Ü°è
 		String changeId = new_id.toLowerCase().replaceAll("[^-_.a-z0-9]","");
-		
-		// 3ë‹¨ê³„
+		// 3´Ü°è
 		char[] cArr = changeId.toCharArray();
 		changeId = "";
 		for(int i=0; i<cArr.length; i++) {
@@ -43,13 +40,48 @@ public class Step3 {
 				}
 			}
 		}
-		// 4ë‹¨ê³„
-		changeId = changeId.replaceFirst("\\.", "");
-		if( changeId.charAt(changeId.length()-1) == '.' ) {
-			changeId = changeId.substring(0, changeId.length()-1);
+		// 4´Ü°è
+		// Ã³À½ ¹®ÀÚ°¡ .ÀÏ¶§
+		if(nullCheck(changeId)) {
+			if(changeId.charAt(0) == '.') {
+				changeId = changeId.substring(1, changeId.length());
+			}
 		}
-		// 5ë‹¨ê³„
+		if(nullCheck(changeId)) {
+			// ¸¶Áö¸· ¹®ÀÚ°¡ . ÀÏ¶§
+			if( changeId.charAt(changeId.length()-1) == '.') {
+				changeId = changeId.substring(0, changeId.length()-1);
+			}
+		}
+		// 5´Ü°è
+		changeId = changeId.equals("")?changeId.replace("", "aaa") : changeId;
+		// 6´Ü°è 
+		if(changeId.length() > 15) {
+			changeId = changeId.substring(0, 15);
+			if(changeId.charAt(changeId.length()-1) == '.') {
+				changeId = changeId.substring(0, changeId.length()-1);
+			}
+		}
+		// 7´Ü°è
+		if(changeId.length() <= 2) {
+			char s = changeId.charAt(changeId.length()-1);
+			for(int i=0; i<3; i++) {
+				if(changeId.length() < 3) {
+					changeId += String.valueOf(s);
+				} else if(changeId.length() == 3) {
+					break;
+				}
+			}
+		}
 		
-		
+		return changeId;
+	}
+	
+	public static boolean nullCheck(String id) {
+		boolean check = false;
+		if(!id.equals("") && !id.isEmpty()) {
+			check = true;
+		}
+		return check;
 	}
 }
