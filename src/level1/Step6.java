@@ -6,7 +6,6 @@ public class Step6 {
 		solution();
 	}
 	
-	
 	public static void solution() {
 		
 	} 
